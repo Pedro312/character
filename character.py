@@ -12,14 +12,20 @@ class Character(object):
         
     def attack(self, target):
         target.take_damage(self.damage)
-        print "You attack %s for %d damage." % (target.name , self.damage)
+        print "You attacked %s for %d damage." % (target.name , self.damage)
         
     def take_damage(self, damage):
-        self.health -= damage
+        if self.health > 0:
+            self.health -= damage
+            if self.health <= 0:
+                print "%s has been slain," %self.name
+        else:
+            print "%s is already dead" % self.name
         
 orc1 = Character('The First Orc', 100, 20, 2)
 orc2 = Character('The Second Orc', 100, 20, 2)
 sam = Character("Sam V", 10, 0.000000000001, 0.0000000001)
 
+#Testing code
 orc1.attack(orc2)
 print "The second orc has %d health." % orc2.health
