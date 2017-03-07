@@ -16,10 +16,11 @@ class Character(object):
         print "You attacked %s for %d damage." % (target.name , self.damage)
         
     def take_damage(self, damage):
-        if self.health > 0:
-            self.health -= damage
-            if self.health <= 0:
-                print "%s has been slain," %self.name
+        if self.armor > 0:
+            self.armor -= damage
+            if self.armor <= 0:
+                if self.health > 0:
+                    self.health -= damage
         else:
             print "%s is already dead" % self.name
         
